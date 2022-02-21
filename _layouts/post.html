@@ -8,7 +8,19 @@ layout: default
         <div class="label">
 
             <div class="label-card">
-                <i class="fa fa-calendar"></i>{{ page.date | date: "%F" }}
+                <i class="fa fa-calendar"></i>
+                <!-- 设定不同的日期格式 -->
+                {% assign time_token = page.date | date:"%S" %}
+                {% if time_token != "00" %}
+                  {{ page.date | date: "%F %T" }}
+                {% else %}
+                  {% assign time_token = page.date | date:"%M" %}
+                  {% if time_token !="00" %}
+                    {{ page.date | date: "%F %R" }}
+                  {% else %}
+                    {{ page.date | date: "%F" }}
+                  {% endif %}
+                {% endif %}
             </div>
 
             <div class="label-card">
@@ -95,10 +107,20 @@ layout: default
  * target _blank
  */
 (function() {
-    var aTags = document.querySelectorAll('article a:not([id])')
+    var aTags = document.querySelectorAll('article a:not([id])');
     for (var i = 0; i < aTags.length; i++) {
-        aTags[i].setAttribute('target', '_blank')
+        aTags[i].setAttribute('target', '_blank');
     }
-}());
+})();
+//更改image的src路径
+(function(){
+    var imgTags = document.querySelectorAll('article img');
+    for (var i = 0; i < imgTags.length; i++) {
+        if(imgTags[i].src.search(/^\d+\./)){
+            imgTags[i].src = "{{ site.baseurl }}/assets/{{ page.url }}"+imgTags[i].src;
+        }
+    }
+})();
+
 </script>
 <script src="{{ "/js/pageContent.js " | prepend: site.baseurl }}" charset="utf-8"></script>

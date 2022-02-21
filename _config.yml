@@ -6,16 +6,22 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: newsage
+title: NewSage
 brief-intro: dose of news
 baseurl: "/newsage" # the subpath of your site, e.g. /blog
 url: "https://brainor.github.io" # the base hostname & protocol for your site
 
 permalink: /:year/:month/:day/:title/
-
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      permalink: /posts/:year:month:day:title
 # other links
 twitter_username:
-facebook_username: gaohaoyang.water
+facebook_username: 
 github_username:  brainor
 email: brainor@qq.com
 weibo_username: 
@@ -23,7 +29,7 @@ zhihu_username:
 linkedIn_username: 
 dribbble_username:
 
-description_footer: beautiful world
+description_footer: 
 
 # comments
 # two ways to comment, only choose one, and use your own short name
