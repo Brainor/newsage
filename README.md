@@ -83,14 +83,13 @@ The user can write some introduction about theirselves and their site with `mark
 
 ### Comments
 
-This theme supports both [disqus](https://disqus.com/) and [多说评论 duoshuo comments](http://duoshuo.com/). It's very easy to config your comments module.
+This theme supports [disqus](https://disqus.com/). It's very easy to config your comments module.
 
 The only thing you need do is to change the `short_name` in the file `_config.yml`. As follows.
 
 ```yml
 # comments
 # two ways to comment, only choose one, and use your own short name
-duoshuo_shortname: #xxx
 disqus_shortname: xxx
 ```
 
@@ -201,16 +200,15 @@ description_footer: 本站记录我前端之旅的沿途风景！
 
 Get your own `short_name`:
 
-Visit https://disqus.com/ or http://duoshuo.com/. And follow the prompts at the site.
+Visit https://disqus.com/. And follow the prompts at the site.
 
 ```yml
 # comments
 # two ways to comment, only choose one, and use your own short name
-duoshuo_shortname: #hygblog
 disqus_shortname: xxxx
 ```
 
-When you done, you can also see the comments info at disqus or duoshuo admin console.
+When you done, you can also see the comments info at disqus admin console.
 
 #### Statistical analysis info
 

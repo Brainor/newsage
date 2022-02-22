@@ -104,7 +104,7 @@ layout: default
 </div>
 <script>
 /**
- * target _blank
+ * target _blank, 更改a的href路径如果指向一个附件
  */
 (function() {
     var aTags = document.querySelectorAll('article a:not([id])');
@@ -112,13 +112,15 @@ layout: default
         aTags[i].setAttribute('target', '_blank');
     }
 })();
-//更改image的src路径
+//更改元素的src路径
 (function(){
-    var imgTags = document.querySelectorAll('article img');
-    for (var i = 0; i < imgTags.length; i++) {
-        if(imgTags[i].src.search(/^\d+\./)){
-            imgTags[i].src = "{{ site.baseurl }}/assets/{{ page.url }}"+imgTags[i].src;
-        }
+    let tags = document.querySelectorAll('article [src]:not([src*="/"])');
+    for (let i = 0; i < tags.length; i++) {
+        tags[i].src = "{{ site.baseurl }}/assets/"+"{{ page.path }}".match(/_posts\/(.*)\.md/)[1]+'.'+decodeURI(tags[i].src).match(/posts\/(.*$)/)[1];
+    }
+    tags=document.querySelectorAll('article a[href]:not([href*="/"]):not([href$=".md"])')
+    for (let i = 0; i < tags.length; i++) {
+        tags[i].href = "{{ site.baseurl }}/assets/"+"{{ page.path }}".match(/_posts\/(.*)\.md/)[1]+'.'+decodeURI(tags[i].href).match(/posts\/(.*$)/)[1];
     }
 })();
 
