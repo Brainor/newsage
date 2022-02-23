@@ -103,26 +103,26 @@ layout: default
     </div>
 </div>
 <script>
-/**
- * target _blank, 更改a的href路径如果指向一个附件
- */
-(function() {
-    var aTags = document.querySelectorAll('article a:not([id])');
-    for (var i = 0; i < aTags.length; i++) {
-        aTags[i].setAttribute('target', '_blank');
-    }
-})();
-//更改元素的src路径
-(function(){
-    let tags = document.querySelectorAll('article [src]:not([src*="/"])');
-    for (let i = 0; i < tags.length; i++) {
-        tags[i].src = "{{ site.baseurl }}/assets/"+"{{ page.path }}".match(/_posts\/(.*)\.md/)[1]+'.'+decodeURI(tags[i].src).match(/posts\/(.*$)/)[1];
-    }
-    tags=document.querySelectorAll('article a[href]:not([href*="/"]):not([href$=".md"])')
-    for (let i = 0; i < tags.length; i++) {
-        tags[i].href = "{{ site.baseurl }}/assets/"+"{{ page.path }}".match(/_posts\/(.*)\.md/)[1]+'.'+decodeURI(tags[i].href).match(/posts\/(.*$)/)[1];
-    }
-})();
-
+    /**
+     * target _blank, 更改a的href路径如果指向一个附件
+     */
+    (function() {
+        var aTags = document.querySelectorAll('article a:not([id])');
+        for (var i = 0; i < aTags.length; i++) {
+            aTags[i].setAttribute('target', '_blank');
+        }
+    })();
+    //更改元素的src路径
+    (function(){
+        let tags = document.querySelectorAll('article [src]:not([src*="/"])');
+        for (let i = 0; i < tags.length; i++) {
+            tags[i].src = "{{ site.baseurl }}/assets/"+"{{ page.path }}".match(/_posts\/(.*)\.md/)[1]+'.'+decodeURI(tags[i].src).match(/posts\/(.*$)/)[1];
+        }
+        // tags=document.querySelectorAll('article a[href]:not([href*="/"]):not([href$=".md"])')
+        // for (let i = 0; i < tags.length; i++) {
+        //     tags[i].href = "{{ site.baseurl }}/assets/"+"{{ page.path }}".match(/_posts\/(.*)\.md/)[1]+'.'+decodeURI(tags[i].href).match(/posts\/(.*$)/)[1];
+        // }
+    })();
+    
 </script>
 <script src="{{ "/js/pageContent.js " | prepend: site.baseurl }}" charset="utf-8"></script>
