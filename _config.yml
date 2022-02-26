@@ -53,6 +53,9 @@ kramdown:
 # port
 # port: 1234
 
+# timezone
+timezone: Asia/Shanghai
+
 # url
 category_dir: category/
 tag_dir: tag/
