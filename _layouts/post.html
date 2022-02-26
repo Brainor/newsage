@@ -116,7 +116,8 @@ layout: default
     (function(){
         let tags = document.querySelectorAll('article [src]:not([src*="/"])');
         for (let i = 0; i < tags.length; i++) {
-            tags[i].src = "{{ site.baseurl }}/assets/"+"{{ page.path }}".match(/_posts\/(.*)\.md/)[1]+'.'+decodeURI(tags[i].src).match(/posts\/(.*$)/)[1];
+            // tags[i].src = "{{ site.baseurl }}/assets/"+"{{ page.path }}".match(/_posts\/(.*)\.md/)[1]+'.'+decodeURI(tags[i].src).match(/posts\/(.*$)/)[1];
+            tags[i].src="https://media.githubusercontent.com/media/"+"{{site.url}}".match(/https:\/\/(.*)\.github/)[1]+"{{site.baseurl}}/master/assets/"+"{{ page.path }}".match(/_posts\/(.*)\.md/)[1]+'.'+decodeURI(tags[i].src).match(/posts\/(.*$)/)[1];
         }
         // tags=document.querySelectorAll('article a[href]:not([href*="/"]):not([href$=".md"])')
         // for (let i = 0; i < tags.length; i++) {
