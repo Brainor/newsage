@@ -43,7 +43,7 @@ layout: default
         </div>
         <hr>
         <article itemscope itemtype="http://schema.org/BlogPosting">
-        {{content}}
+        
         </article>
         <hr>
 
@@ -104,26 +104,41 @@ layout: default
 </div>
 <script>
     /**
-     * target _blank, 更改a的href路径如果指向一个附件
+     * 添加处理后的{% raw %}{{content}}{% endraw %}
+    /**
+     * 让链接打开新窗口
+     * @param {Element} htmlNode {% raw %}{{content}}{% endraw %}
+     * @return {Element} 新的{% raw %}{{content}}{% endraw %}
      */
-    (function() {
-        var aTags = document.querySelectorAll('article a:not([id])');
+    function add_blank(htmlNode) {
+        var aTags = htmlNode.content.querySelectorAll('a:not([id])');
         for (var i = 0; i < aTags.length; i++) {
             aTags[i].setAttribute('target', '_blank');
         }
-    })();
-    //更改元素的src路径
-    (function(){
-        let tags = document.querySelectorAll('article [src]:not([src*="/"])');
+        return htmlNode;
+    }
+    /**
+     * 更改元素的src路径
+     */
+    function modify_src(htmlNode){
+        let tags = htmlNode.content.querySelectorAll('[src]:not([src*="/"])');
         for (let i = 0; i < tags.length; i++) {
-            // tags[i].src = "{{ site.baseurl }}/assets/"+"{{ page.path }}".match(/_posts\/(.*)\.md/)[1]+'.'+decodeURI(tags[i].src).match(/posts\/(.*$)/)[1];
-            tags[i].src="https://media.githubusercontent.com/media/"+"{{site.url}}".match(/https:\/\/(.*)\.github/)[1]+"{{site.baseurl}}/master/assets/"+"{{ page.path }}".match(/_posts\/(.*)\.md/)[1]+'.'+decodeURI(tags[i].src).match(/posts\/(.*$)/)[1];
+            if ("{{site.url}}".match(/localhost/)){
+                tags[i].src = "{{ site.baseurl }}/assets/"+"{{ page.path }}".match(/_posts\/(.*)\.md/)[1]+'.'+decodeURI(tags[i].src).match(/posts\/(.*$)/)[1];
+            }else{
+                tags[i].src="https://media.githubusercontent.com/media/"+"{{site.url}}".match(/https:\/\/(.*)\.github/)[1]+"{{site.baseurl}}/master/assets/"+"{{ page.path }}".match(/_posts\/(.*)\.md/)[1]+'.'+decodeURI(tags[i].src).match(/posts\/(.*$)/)[1];
+            }
         }
-        // tags=document.querySelectorAll('article a[href]:not([href*="/"]):not([href$=".md"])')
+        return htmlNode;
+        // tags=htmlNode.querySelectorAll('a[href]:not([href*="/"]):not([href$=".md"])')
         // for (let i = 0; i < tags.length; i++) {
         //     tags[i].href = "{{ site.baseurl }}/assets/"+"{{ page.path }}".match(/_posts\/(.*)\.md/)[1]+'.'+decodeURI(tags[i].href).match(/posts\/(.*$)/)[1];
         // }
-    })();
-    
+    }
+    let template = document.createElement('template');
+    template.innerHTML = `{{content | replace: "${", "\${" | replace: "`", "\\`" }}}}`;
+    template=add_blank(template);
+    template=modify_src(template);
+    document.querySelector('article[itemtype$="BlogPosting"]').append(...template.content.children);
 </script>
 <script src="{{ "/js/pageContent.js " | prepend: site.baseurl }}" charset="utf-8"></script>
