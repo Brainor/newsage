@@ -265,8 +265,13 @@ You should use markdown syntax to write article, just like write readme in githu
 You can use 3 \`\`\` to write code block.
 
 ### 5. Local launch
+搭建环境:
+```
+bundle install
+bundle update
+```
 
-use command:
+本地运行use command:
 
 ```
 jekyll s
@@ -293,7 +298,8 @@ Visit localhost:4000 to see your blog!!!
 
 ### 6. Push to GitHub
 
-If there is nothing wrong, push code to your github!
+If there is nothing wrong, push code to your github!  
+如果有LFS存储, clone到本地时需要先运行`git config --global filter.lfs.process "git-lfs filter-process --skip"`, 使得大文件不会被下载.
 
 ## Donate
 

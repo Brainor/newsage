@@ -11,6 +11,7 @@ brief-intro: dose of news
 baseurl: "/newsage" # the subpath of your site, e.g. /blog
 url: "https://brainor.github.io" # the base hostname & protocol for your site
 
+encoding: utf-8
 permalink: /:year/:month/:day/:title/
 defaults:
   - scope:
