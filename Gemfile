@@ -10,5 +10,5 @@ group :jekyll_plugins do
 end
 gem 'tzinfo'
 gem 'tzinfo-data'
-gem 'wdm', '>= 0.1.0'
+gem 'wdm'
 gem 'webrick'
