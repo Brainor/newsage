@@ -299,7 +299,9 @@ Visit localhost:4000 to see your blog!!!
 ### 6. Push to GitHub
 
 If there is nothing wrong, push code to your github!  
-如果有LFS存储, clone到本地时需要先运行`git config --global filter.lfs.process "git-lfs filter-process --skip"`, 使得大文件不会被下载.
+如果有LFS存储, clone到本地时需要先运行`git config --global filter.lfs.process "git-lfs filter-process --skip"`, 使得大文件不会被下载.  
+如果github需要代理, 则`git config --global http.proxy 127.0.0.1`  
+取消代理为`git config --global --unset http.proxy`
 
 ## Donate
 
